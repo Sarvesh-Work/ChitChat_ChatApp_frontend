@@ -3,9 +3,11 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { VisuallyHiddenInput } from "../components/styles/StyleComponent";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import PropTypes from "prop-types";
+import { mainColor } from "../components/constants/constants";
 
 
-function SignUp({ handelLogin }) {
+function SignUp({ handleLogin }) {
     const {
         register,
         handleSubmit,
@@ -40,11 +42,11 @@ function SignUp({ handelLogin }) {
                     position: "absolute",
                     bottom: 0,
                     right: 0,
-                    bgcolor: "#f84992",
+                    bgcolor: mainColor,
                     color: "white",
                     padding: "8px",
                     ":hover": {
-                        color: "#f84992",
+                        color: mainColor,
                         bgcolor: "white"
                     }
                 }} component="label">
@@ -63,7 +65,7 @@ function SignUp({ handelLogin }) {
 
 
             </Stack>
-            {errors.Photo && <div style={{ color: "#F84992", textAlign: "center", padding: "5px" }}>
+            {errors.Photo && <div style={{ color: mainColor, textAlign: "center", padding: "5px" }}>
                 {errors.Photo.message ? (errors.Photo.message) :
                     ("Max size is 5mb")
                 }
@@ -81,7 +83,7 @@ function SignUp({ handelLogin }) {
                     ...register("name", { required: "name is  required" })
                     }
                 />
-                {errors.name && <div style={{ color: "#F84992" }}>
+                {errors.name && <div style={{ color: mainColor }}>
                     {errors.name.message}
                 </div>
                 }
@@ -97,7 +99,7 @@ function SignUp({ handelLogin }) {
                     }
 
                 />
-                {errors.username && <div style={{ color: "#F84992" }}>
+                {errors.username && <div style={{ color: mainColor }}>
                     {errors.username.message ? (errors.username.message)
 
                         :
@@ -123,7 +125,7 @@ function SignUp({ handelLogin }) {
                     ...register("Bio", { required: "Bio is  required" })
                     }
                 />
-                {errors.Bio && <div style={{ color: "#F84992" }}>
+                {errors.Bio && <div style={{ color: mainColor }}>
                     {errors.Bio.message}
                 </div>
                 }
@@ -140,7 +142,7 @@ function SignUp({ handelLogin }) {
                     }
 
                 />
-                {errors.password && <div style={{ color: "#F84992" }}>
+                {errors.password && <div style={{ color: mainColor }}>
                     {errors.password.message ? (errors.password.message)
 
                         :
@@ -167,7 +169,7 @@ function SignUp({ handelLogin }) {
                     ...register("ConformPassword", { required: "Conform password is required", validate: (value, formValue) => value == formValue.password || "password is not matching" })
                     }
                 />
-                {errors.ConformPassword && <div style={{ color: "#F84992" }}>
+                {errors.ConformPassword && <div style={{ color: mainColor }}>
                     {errors.ConformPassword.message}
                 </div>
 
@@ -176,9 +178,9 @@ function SignUp({ handelLogin }) {
                 <Button
                     sx={{
                         marginTop: "2rem",
-                        bgcolor: "#f84992",
+                        bgcolor: mainColor,
                         "&:hover": {
-                            bgcolor: "#f84992"
+                            bgcolor: mainColor
                         }
                     }}
                     fullWidth
@@ -191,7 +193,7 @@ function SignUp({ handelLogin }) {
                     color: "#797C8B",
                     marginTop: "10px"
                 }}>
-                    Already have an account? <span onClick={() => handelLogin()} style={{ color: "#F84992", fontWeight: "600", cursor: "pointer" }}>Login</span>
+                    Already have an account? <span onClick={() => handleLogin()} style={{ color: mainColor, fontWeight: "600", cursor: "pointer" }}>Login</span>
                 </Typography>
 
             </form>
@@ -200,3 +202,7 @@ function SignUp({ handelLogin }) {
 }
 
 export default SignUp
+
+SignUp.propTypes = {
+    handleLogin: PropTypes.func
+};

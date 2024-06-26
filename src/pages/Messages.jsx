@@ -1,3 +1,4 @@
+import AppLayout from "../components/layout/AppLayout"
 
 
 function Messages() {
@@ -6,4 +7,4 @@ function Messages() {
     )
 }
 
-export default Messages
+export default AppLayout(Messages)

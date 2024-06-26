@@ -2,17 +2,16 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import SignUp from "./pages/SignUp.jsx";
 import Protected from "./components/auth/Protected.jsx";
-import PageNotFound from "./pages/PageNotFound.jsx";
 
 // routes Imports
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Groups = lazy(() => import("./pages/Login.jsx"));
 const Messages = lazy(() => import("./pages/Messages"));
-
+const PageNotFound = lazy(() => import("./pages/PageNotFound.jsx"))
 
 
 
@@ -63,8 +62,8 @@ function App() {
       ]
     },
     {
-      path:"*",
-      element:<PageNotFound/>
+      path: "*",
+      element: <PageNotFound />
 
     }
 
@@ -75,7 +74,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div>Loading....</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </>
   )
 }

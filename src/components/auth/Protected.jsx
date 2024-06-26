@@ -1,10 +1,18 @@
-import { Navigate, Outlet } from "react-router-dom"
+import PropTypes from "prop-types";
+import { Navigate, Outlet } from "react-router-dom";
+
+const Protected = ({ children, user, redirect }) => {
+    if (!user) return <Navigate replace to={redirect} />;
+
+    return children ? children : <Outlet />;
+};
 
 
-export default function Protected({ children, user, redirect }) {
 
-    if (!user) return <Navigate replace={true} to={redirect} />
+export default Protected;
 
-    return children ? children : <Outlet />
-
-}
+Protected.propTypes = {
+    children: PropTypes.node,
+    user: PropTypes.bool,
+    redirect: PropTypes.string,
+};
