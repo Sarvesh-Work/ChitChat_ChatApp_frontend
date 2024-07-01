@@ -5,6 +5,7 @@ import {
 import { lazy, Suspense } from "react";
 import SignUp from "./pages/SignUp.jsx";
 import Protected from "./components/auth/Protected.jsx";
+import Loader from "./components/layout/Loader.jsx";
 
 // routes Imports
 const Home = lazy(() => import("./pages/Home.jsx"));
@@ -74,10 +75,11 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div>Loading....</div>}>
+      <Suspense fallback={<Loader/>}>
         <RouterProvider router={router} />
       </Suspense>
     </>
+    // we have to create loading component
   )
 }
 

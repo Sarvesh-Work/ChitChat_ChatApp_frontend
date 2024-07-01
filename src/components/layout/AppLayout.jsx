@@ -1,26 +1,30 @@
 import { Grid } from "@mui/material";
 import Title from "../Shared/Title";
 import Header from "./Header";
+import MessageList from "../specific/MessageList";
 
 const AppLayout = (WrappedComponent) => {
+
+
+
     const HOC = (props) => {
         return (
             <>
                 <Title />
-                <Header />
-                <Grid container height={"calc(100vh - 4rem)"}>
+                
+                <Grid container height={"100vh"}>
+                    <Grid item sm={1} bgcolor={"black"} sx={{
+                          display: { xs: "none", lg: "block" }
+                    }}> 
+                     <Header/>
+                    </Grid>
                     <Grid item sm={4} md={3} sx={{
                         display: { xs: "none", sm: "block" }
                     }} height={"100%"}>
-                        first
+                        <MessageList />
                     </Grid>
-                    <Grid item xs={12} sm={8} md={5} lg={6} height={"100%"}>
+                    <Grid item xs={12} sm={8} md={9} lg={8} height={"100%"}>
                         <WrappedComponent {...props} />
-                    </Grid>
-                    <Grid item md={4} lg={3} sx={{
-                        display: { xs: "none", md: "block" }
-                    }} height={"100%"}>
-                        Third
                     </Grid>
                 </Grid>
 
